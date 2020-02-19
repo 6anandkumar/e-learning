@@ -1,0 +1,46 @@
+extends layout
+
+block content
+  .main.container.clearfix(style='color: black')
+    .row.w3-panel.w3-card-4(Style='background: rgba(255,255,255)')
+      .col-md-8.col-md-offset-2(style='color: black')
+      if userType == 'student'
+        h1.display-5
+          img.avatar.img-circle.hidden-xs-down(src=`/images/userIcon.png`, alt='avatar')
+          | #{stDetail.name} | #{stDetail.studentID}
+        br
+        br
+        h1(style='font-size:18;') See courses 
+          a(href="courses",style='text-decoration: underline;') here
+        h2.favorite-book Courses Enrolled:
+          br
+          for result in stDetail.courses
+            div.w3-card.w3-hover-shadow(style="margin: 1em;width: 25%;position: relative;float: left")
+              img(src="/images/courseLogo.jpg", alt="",style="width:100%")
+              div.w3-container.w3-center(style='padding:0;')
+                p #{result.courseCode}
+                p(style='font-size:14') Course Name: #{result.courseName}
+                p(style='font-size:14') Instructor: #{result.courseFaculty}
+                button.w3-button.w3-block.w3-pale-red(onclick='courseDeRegister('+result.courseID+',"'+studentID+'")', style='padding:0.5em;font-size:16') De-Register        
+      else if userType == 'instructor'
+        h1.display-5
+          img.avatar.img-circle.hidden-xs-down(src=`/images/userIcon.png`, alt='avatar')
+          | #{inDetail.name}
+        br
+        br
+        h1(style='font-size:18') See courses 
+          a(href="courses",style='text-decoration: underline;') here
+        h1(style='font-size:18;') Add your courses 
+          a(href="/courses/add",style='text-decoration: underline;') here
+        h2.favorite-book Courses Created:
+          br
+          for result in inDetail.courses
+            div.w3-card.w3-hover-shadow(style="margin: 1em;width: 25%;position: relative;float: left")
+              img(src="/images/courseLogo.jpg", alt="",style="width:100%")
+              div.w3-container.w3-center(style='padding:0;')
+                p #{result.courseCode}
+                p(style='font-size:14') Course Name: #{result.courseName}
+                p(style='font-size:14') Instructor: #{inDetail.name}
+                button.w3-button.w3-block.w3-pale-red(onclick='courseDelete('+result.courseID+',"'+inDetail.insID+'")', style='padding:0.5em;font-size:16') Delete Course     
+
+          

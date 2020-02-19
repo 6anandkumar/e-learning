@@ -1,0 +1,1 @@
+{"instructorCount":2,"lastInsId":2,"instructors":[{"insID":1,"name":"Agent 47","username":"agent47","password":"1234","coursesCount":5,"courses":[{"courseID":7,"courseCode":"CSE1001","courseName":"course1","courseFaculty":"Agent 47"}]},{"insID":2,"name":"Anand","username":"agent008","password":"1234","coursesCount":0,"courses":[]}]}

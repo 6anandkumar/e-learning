@@ -1,0 +1,18 @@
+nav.navbar.navbar-fixed-top.navbar-dark.bg-inverse
+  button.navbar-toggler.hidden-md-up.pull-xs-right(type='button', data-toggle='collapse', data-target='#navbar') &#x2630;
+  #navbar.navbar-nav.collapse.navbar-toggleable-sm
+    .container
+      a.navbar-brand(href='/')
+        img(src='/images/vitlogo.png' alt='login' style='width:150px; height:56.25px;')
+      .nav-items.clearfix
+        if !loggedIn
+          a.nav-item.nav-link(href='register') Sign Up
+        a.nav-item.nav-link(href='courses') Courses
+        a.nav-item.nav-link(href='dashboard') My Profile
+        
+      if loggedIn
+        div
+          img.avatar.img-circle.hidden-xs-down(src=`/images/userIcon.png`, alt='avatar')
+          a.btn.btn-light.pull-md-right(href='/logout') Log out
+      else  
+        a.btn.btn-info.pull-md-right(href='/login') Login

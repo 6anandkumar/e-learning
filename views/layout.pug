@@ -1,0 +1,53 @@
+doctype html(lang='en')
+head
+  meta(charset='utf-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(http-equiv='x-ua-compatible', content='ie=edge')
+  title E-Learning | #{title}
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css', integrity='sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd', crossorigin='anonymous')
+  link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  link(rel='stylesheet' href='https://www.w3schools.com/w3css/4/w3.css')
+
+  body
+    // load navbar.pug
+    include navbar
+
+    // content block
+    block content
+
+    // footer
+    if title=='Home'
+      include bottombar
+    else
+      p.foot.text-xs-center Made By Anand Kumar
+
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/js/bootstrap.min.js', integrity='sha384-vZ2WRJMwsjRMW/8U7i6PWi6AlO1L79snBrmgiDpgIWJ82z8eA5lenwvxbMV1PAh7', crossorigin='anonymous')
+    script.
+      var courseRegister = function(csID,stId) {
+        //console.log('function called!');
+        console.log(window.location.pathname +  "?courseId="+csID+"&studentId="+stId+"&p=reg")
+        location.replace(window.location.pathname +  "?proc=reg&courseId=" + csID + "&studentId=" + stId);
+      }
+      var courseDeRegister = function(csID,stId) {
+        //console.log('function called!');
+        console.log(window.location.pathname +  "?proc=dereg&courseId="+csID+"&studentId="+stId)
+        location.replace(window.location.pathname +  "?proc=dereg&courseId=" + csID + "&studentId=" + stId);
+      }
+      var studentLogin = function(){
+        //console.log('studentlogin')
+        location.replace(window.location.pathname +  "/student");
+      }
+      var instructorLogin = function(){
+        location.replace(window.location.pathname +  "/instructor");
+      }
+      var courseDelete = function(csID, insID){
+        location.replace(window.location.pathname +  "?proc=delCourse&courseId=" + csID + "&insId=" + insID);
+      }
+      var studentRegister = function(){
+        location.replace(window.location.pathname +  "/student");
+      }
+      var instructorRegister = function(){
+        location.replace(window.location.pathname +  "/instructor");
+      }

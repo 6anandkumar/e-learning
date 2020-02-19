@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  .main.container.clearfix(style='')
+    .row.w3-panel.w3-card-4(Style='background: rgba(255,255,255)')
+      .col-md-8.col-md-offset-2(style='color: black')
+        br
+        br
+        h2.favorite-book IT &amp; Software Courses:
+          br
+          for result in courseList
+            div.w3-card.w3-hover-shadow(style="margin:1em;width: 25%;position: relative;float: left")
+              img(src="/images/courseLogo.jpg", alt="",style="width:100%")
+              div.w3-container.w3-center(style='padding:0;')
+                p #{result.courseCode}
+                p(style='font-size:14') Course Name: #{result.courseName}
+                p(style='font-size:14') Instructor: #{result.courseFaculty}
+                if courseReg.includes(result.courseID)
+                    .w3-block.w3-pale-green.w3-text-green(style='padding:0.5em;font-size:16') Registered
+                else
+                    button.w3-button.w3-block.w3-pale-red(onclick='courseRegister('+result.courseID+',"'+studentID+'")', style='padding:0.5em;font-size:16') Register
+
+
+

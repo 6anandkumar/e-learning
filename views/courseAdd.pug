@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  .main.container.row
+    .col-md-6.col-md-offset-3
+      h1.display-4.m-b-2 Add Course
+      
+      // register form
+      form(method='POST' action='/courses/add')
+        div.form-group(style='color: red;')
+                label(for='errors') #{error}
+        div.form-group
+          label(for='name') Course Name:
+          input#name.form-control(type='text', placeholder='Course Name' name='name')
+        div.form-group
+          label(for='courseCode') Course Code:
+          input#email.form-control(type='text', placeholder='' name='courseCode')
+        button.btn.btn-primary(type='submit') Add Course
