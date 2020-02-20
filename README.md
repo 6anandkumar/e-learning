@@ -43,7 +43,7 @@ The `dashboard` page for student
 
 Selecting a course and clicking **'De-Register'** button will de-register the course for the student.
 
-The `course` page for student
+The `courses` page for student
 * lists course Name, course Code and the instructor taking the course for all the courses.
 * provides facility to `Register` to the course if the student is not already subscribed to the course.
 * lists the courses to which the student has already registered, marked as `Registered`.
