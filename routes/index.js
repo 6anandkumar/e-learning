@@ -110,7 +110,10 @@ router.get('/dashboard', (req, res) => {
         User.delCourse(req.query.courseId, req.query.insId).then(() => {
           console.log('Course Deleted from user!')
           Courses.delCourse(req.query.courseId).then(() => {
-            console.log('Course Deleted Completely!')
+            console.log('Course Deleted from course list!')
+            User.deRegisterCourseFromUsers(req.query.courseId).then(() => {
+              console.log('Course Deleted Completely!')
+            })
           })
         })
       }

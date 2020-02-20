@@ -65,9 +65,9 @@ function delCourse(courseId){
             if(element.courseID == courseId){
                 ind = i
             }
-            ind++
+            i++
         })
-        if(ind){
+        if(ind != null){
             coursesData.courses.splice(ind,1)
             coursesData.totalCourses--
             json = JSON.stringify(coursesData); //convert it back to json

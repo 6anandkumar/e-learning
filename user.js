@@ -230,14 +230,37 @@ function delCourse(courseId, insId){
                         ind = i
                     }
                 }
-                //console.log(ind)
                 element.courses.splice(ind,1)
-                element.courses.coursesCount--
+                element.coursesCount--
             }
             json = JSON.stringify(instructorData); //convert it back to json
             fs.writeFileSync(`./data/instructor.json`, json, 'utf8'); // write it back*/
         })
         if(!err){
+            return resolve()
+        }
+    });
+
+    return promise;
+}
+
+function deRegisterCourseFromUsers(csId){
+    const promise = new Promise((resolve, reject) => {
+        var err = null
+        studentData.students.forEach(element => {
+            var ind = null
+            for(var i=0;i<element.courses.length;i++){
+                if(element.courses[i].courseID == csId){
+                    ind = i
+                }
+            }
+            element.courses.splice(ind,1)
+            element.courseCount--
+            //console.log(studentData)
+        })
+        if(!err){
+            json = JSON.stringify(studentData); //convert it back to json
+            fs.writeFileSync(`./data/student.json`, json, 'utf8'); // write it back*/
             return resolve()
         }
     });
@@ -259,3 +282,4 @@ module.exports.addCourse = addCourse
 module.exports.delCourse = delCourse
 module.exports.checkDataIns = checkDataIns
 module.exports.addToJsonIns = addToJsonIns
+module.exports.deRegisterCourseFromUsers = deRegisterCourseFromUsers
