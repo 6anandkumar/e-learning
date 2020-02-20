@@ -49,7 +49,6 @@ router.get('/login/instructor', function(req, res, next) {
 // GET /logout
 router.get('/logout', function(req, res, next) {
     if (req.session) {
-      // delete session object
       req.session.destroy(function(err) {
         if(err) {
           return next(err);
@@ -99,7 +98,6 @@ router.get('/dashboard', (req, res) => {
     if(!req.session.userId) res.redirect('/login')
     if(req.query.courseId){
       if(req.query.proc=="dereg"){
-        //console.log('degregistraion started...')
         User.deRegisterCourse(req.query.courseId,req.query.studentId).then(() => {
           console.log('Course De-Registered')
         }).catch((err) => {
@@ -149,13 +147,10 @@ router.get('/courses', (req, res) => {
     }
     Courses.getCourseList().then((data) => {
       User.getStudentDetail(req.session.userId, (err, stDetail) => {
-        //console.log(data)
         let courseReg = []
         stDetail.courses.forEach(element => {
             courseReg.push(element.courseID)
         });
-        //console.log("course registered array: ")
-        //console.log(courseReg)
         return res.render('courses', { title: 'Courses',courseReg: courseReg, courseList: data, loggedIn: true, studentID: req.session.userId});
       })
     })
@@ -180,7 +175,6 @@ router.get('/courses/add', (req, res) => {
 
 // POST /login/student
 router.post('/login/student', (req, res, next) => {
-    //console.log("from student login post: ")
     if (req.body.username && req.body.password) {
         User.auth(req.body.username,req.body.password, (err,user) => {
             if(err || !user){
@@ -201,7 +195,6 @@ router.post('/login/student', (req, res, next) => {
         err.status = 401;
         return res.redirect(`/login/student?error=${err}`);
     }
-    //res.send('done')
 })
 
 // POST /login/instructor
@@ -226,7 +219,6 @@ router.post('/login/instructor', (req, res, next) => {
       err.status = 401;
       return res.redirect(`/login/instructor?error=${err}`);
   }
-  //res.send('done')
 })
 
 

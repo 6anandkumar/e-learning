@@ -46,8 +46,6 @@ function addToJson(newData, filename, callback){
                 obj.lastCourseID++
                 json = JSON.stringify(obj); //convert it back to json
                 fs.writeFileSync(`./data/${filename}`, json, 'utf8'); // write it back
-                //console.log('New Course added: ')
-                //console.log(newData)
                 return resolve(newData)
             }
         })

@@ -4,7 +4,6 @@ const instructorData = require('./data/instructor.json')
 
 var authenticate = function(username, password, callback){
     var numOfStudents = Object.keys(studentData.students).length
-    //console.log(numOfStudents)
     let count = 0
     let flag = 0
     studentData.students.forEach(element => {
@@ -21,7 +20,6 @@ var getStudentDetail = function(username, callback){
     var courses = []
     studentData.students.forEach(element => {
         if(username === element.username){
-            //console.log(element.courses)
             return callback(null,element)
         }
     })
@@ -69,7 +67,6 @@ function checkData(data){
         var err = null
         studentData.students.forEach(element => {
             if(data.username === element.username){
-                //console.log(element.courses)
                 err = 'User already exists!'
                 return reject(err)
             }
@@ -86,7 +83,6 @@ function checkDataIns(data){
         var err = null
         instructorData.instructors.forEach(element => {
             if(data.username === element.username){
-                //console.log(element.courses)
                 err = 'User already exists!'
                 return reject(err)
             }
@@ -103,16 +99,9 @@ function registerCourse(course,stId){
         var err = null
         studentData.students.forEach(element => {
             if(stId === element.username){
-                /*if(element.courses.includes(course)){
-                    err = 'Course already registered'
-                    console.log(err)
-                    return reject(err)
-                }*/
                 element.courses.push(course)
                 element.courseCount++
-                //console.log(element)
             }
-            //console.log(studentData)
             json = JSON.stringify(studentData); //convert it back to json
             fs.writeFileSync(`./data/student.json`, json, 'utf8'); // write it back
         })
@@ -138,7 +127,6 @@ function deRegisterCourse(csId, stId){
                 element.courses.splice(ind,1)
                 element.courses.courseCount--
             }
-            //console.log(studentData)
             json = JSON.stringify(studentData); //convert it back to json
             fs.writeFileSync(`./data/student.json`, json, 'utf8'); // write it back*/
         })
@@ -152,7 +140,6 @@ function deRegisterCourse(csId, stId){
 
 function authIns(username, password, callback){
     var numOfIns = Object.keys(instructorData.instructors).length
-    //console.log(numOfStudents)
     let count = 0
     let flag = 0
     instructorData.instructors.forEach(element => {
@@ -169,7 +156,6 @@ var getInstructorDetail = function(username, callback){
     var courses = []
     instructorData.instructors.forEach(element => {
         if(username === element.username){
-            //console.log(element.courses)
             return callback(null,element)
         }
     })
@@ -177,7 +163,6 @@ var getInstructorDetail = function(username, callback){
 
 
 function checkCourse(courseData, inDetail){
-    //console.log(courseData)
     const promise = new Promise((resolve, reject) => {
         var err = null
         instructorData.instructors.forEach(element => {
@@ -207,7 +192,6 @@ function addCourse(newCourse,inDetail){
                 element.courses.push(newCourse)
                 element.coursesCount++
             }
-            //console.log(studentData)
             json = JSON.stringify(instructorData); //convert it back to json
             fs.writeFileSync(`./data/instructor.json`, json, 'utf8'); // write it back
         })
@@ -256,7 +240,6 @@ function deRegisterCourseFromUsers(csId){
             }
             element.courses.splice(ind,1)
             element.courseCount--
-            //console.log(studentData)
         })
         if(!err){
             json = JSON.stringify(studentData); //convert it back to json
